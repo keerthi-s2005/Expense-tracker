@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Expenses Tracker</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-user-plus"></i> Register for Expense Tracker</h1>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username"><i class="fas fa-user"></i> Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password"><i class="fas fa-lock"></i> Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+            </div>
+            <!-- Security Question Fields -->
+            <div class="form-group">
+                <label for="security_question1"><i class="fas fa-question-circle"></i> Security Question 1</label>
+                <select id="security_question1" name="security_question1" required>
+                    <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                    <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+                    <option value="What is your favorite color?">What is your favorite color?</option>
+                    <option value="What was the name of your elementary school?">What was the name of your elementary school?</option>
+                </select>
+                <input type="text" name="security_answer1" id="security_answer1" placeholder="Answer to Security Question 1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="security_question2"><i class="fas fa-question-circle"></i> Security Question 2</label>
+                <select id="security_question2" name="security_question2" required>
+                    <option value="What is your favorite book?">What is your favorite book?</option>
+                    <option value="Where were you born?">Where were you born?</option>
+                    <option value="What is your favorite sport?">What is your favorite sport?</option>
+                    <option value="What is your father's middle name?">What is your father's middle name?</option>
+                </select>
+                <input type="text" name="security_answer2" id="security_answer2" placeholder="Answer to Security Question 2" required>
+            </div>
+            <button type="submit" class="btn"><i class="fas fa-user-plus"></i> Register</button>
+        </form>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </div>
+    <script src="/static/js/register.js"></script>
+</body>
+</html>

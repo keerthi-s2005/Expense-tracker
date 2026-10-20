@@ -1,0 +1,86 @@
+-- Create the database
+CREATE DATABASE IF NOT EXISTS expenses_tracker;
+
+-- Use the created database
+USE expenses_tracker;
+
+
+-- Create the users table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    security_question1 VARCHAR(255) NOT NULL,
+    security_answer1_hash VARCHAR(255) NOT NULL,
+    security_question2 VARCHAR(255) NOT NULL,
+    security_answer2_hash VARCHAR(255) NOT NULL
+);
+
+
+-- Create the expenses table
+CREATE TABLE IF NOT EXISTS expenses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    date DATE NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    description TEXT,
+    amount DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Create a categories table (Optional, for predefined categories)
+CREATE TABLE IF NOT EXISTS categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE
+);
+
+-- Insert predefined categories
+INSERT INTO categories (name)
+VALUES 
+    ('Food'),
+    ('Transportation'),
+    ('Entertainment'),
+    ('Utilities'),
+    ('Healthcare'),
+    ('Subscriptions'),
+    ('Education'),
+    ('Savings/Investments'),
+    ('Pet Care'),
+    ('Shopping'),
+    ('Gifts & Donations'),
+    ('Personal Care');
+
+ALTER TABLE budget ADD COLUMN budget DECIMAL(10,2) NOT NULL DEFAULT 0;
+
+
+-- Create the budget table
+CREATE TABLE IF NOT EXISTS budget (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE IF NOT EXISTS budget_goals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    budget_goal DECIMAL(10, 2) NOT NULL,
+    spent_amount DECIMAL(10, 2) DEFAULT 0,  -- Track actual spending
+    status VARCHAR(20) default 'On Track',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+
+
+-- Grant privileges to the database user (adjust username and password accordingly)
+CREATE USER IF NOT EXISTS 'expenses_user'@'localhost' IDENTIFIED BY 'Virat@18';
+GRANT ALL PRIVILEGES ON expenses_tracker.* TO 'expenses_user'@'localhost';
+FLUSH PRIVILEGES;

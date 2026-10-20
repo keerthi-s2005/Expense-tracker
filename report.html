@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Report</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/report.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- Include jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- Include Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header> 
+        <nav>
+            <ul class="nav-links">                
+                <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/expenseform"><i class="fas fa-plus-circle"></i> Add Expense</a></li>
+                <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1>Expense Report</h1>
+
+            <div class="filters">
+                <label for="categoryFilter"><i class="fas fa-filter"></i> Category:</label>
+                <select id="categoryFilter">
+                    <option value="">All</option>
+                    <option value="food">Food</option>
+                    <option value="transport">Transport</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="education">Education</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="custom">Custom</option>
+                </select>
+
+                <input type="text" id="customCategory" placeholder="Enter custom category" style="display: none;">
+
+                <label for="dateFilter"><i class="fas fa-calendar-alt"></i> Date Range:</label>
+                <input type="date" id="startDate">
+                <input type="date" id="endDate">
+
+                <button id="applyFilters"><i class="fas fa-check"></i> Apply Filters</button>
+                <button id="downloadCSV"><i class="fas fa-download"></i> Download CSV</button>
+                <button id="downloadPDF"><i class="fas fa-download"></i> Download PDF</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Amount (INR)</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseTable">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+
+            <div class="analytics">
+                <h2>Summary</h2>
+                <p>Total Expenses: <span id="totalExpenses">0</span> INR</p>
+                <canvas id="categoryChart" width="400" height="200"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Expenses Tracker. All rights reserved.</p>
+    </footer>
+</body>
+</html>

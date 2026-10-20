@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/expense_form.js" defer></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/report"><i class="fas fa-chart-line"></i> Report</a></li>
+                <li><a href="#" id="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1><i class="fas fa-plus-circle"></i> Add New Expense</h1>
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="expenseDate"><i class="fas fa-calendar-alt"></i> Date:</label>
+                    <input type="date" id="expenseDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category"><i class="fas fa-tags"></i> Category</label>
+                    <button class="dropdown-btn">
+                        <i class="fas fa-tags"></i> Select Category
+                    </button>
+                    <select id="category">
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="education">Education</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                    <input type="text" id="customCategoryInput" placeholder="Enter custom category" style="display: none;">
+                </div>
+                
+
+                <div class="form-group">
+                    <label for="description"><i class="fas fa-edit"></i> Description</label>
+                    <textarea id="description" rows="3" placeholder="Enter expense description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount"><i class="fas fa-dollar-sign"></i> Amount (INR)</label>
+                    <input type="number" id="amount" placeholder="Enter amount" required>
+                </div>
+
+                <button type="submit"><i class="fas fa-plus"></i> Add Expense</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Expenses Tracker. All rights reserved.</p>
+    </footer>
+</body>
+</html>
